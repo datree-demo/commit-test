@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/datreeio/commit-test/issues"
   },
-  "homepage": "https://github.com/datreeio/commit-test#readme"
+  "homepage": "https://github.com/datreeio/commit-test#readme",
+  "dependencies": {
+    "nodegit": "^0.22.0"
+  }
 }
