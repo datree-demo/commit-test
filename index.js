@@ -12,7 +12,7 @@ async function main() {
   const projectRepository = await git.Repository.open('.')
   const walker = projectRepository.createRevWalk()
   const headCommit = await projectRepository.getHeadCommit()
-  walker.sorting(git.Revwalk.SORT.TIME, git.Revwalk.SORT.REVERSE)
+  walker.sorting(git.Revwalk.SORT.TOPOLOGICAL)
   walker.push(headCommit.sha())
   const commits = await walker.getCommitsUntil(async () => {})
   const changes = {}
