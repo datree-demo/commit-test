@@ -5,7 +5,7 @@
   "main": "test.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "semantic-release": "npx run semantic-release --no-ci"
+    "semantic-release": "npx semantic-release --no-ci"
   },
   "repository": {
     "type": "git",
@@ -49,6 +49,7 @@
   "devDependencies": {
     "@semantic-release/git": "^7.0.1",
     "@semantic-release/github": "^5.0.1",
-    "@semantic-release/npm": "^4.0.2"
+    "@semantic-release/npm": "^4.0.2",
+    "semantic-release": "^15.9.2"
   }
 }
