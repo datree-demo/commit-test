@@ -22,6 +22,6 @@
     "coveralls": "^3.0.1",
     "glob": "^7.1.2",
     "mocha": "^5.0.4",
-    "nodegit": "^0.22.0"
+    "nodegit": ""
   }
 }
