@@ -24,6 +24,7 @@
     "glob": "^7.1.2",
     "minkey": "0.9.0",
     "mocha": "^5.0.4",
-    "nodegit": ""
+    "nodegit": "",
+    "fake-package", "1.0.0"
   }
 }
