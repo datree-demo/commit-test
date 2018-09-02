@@ -27,7 +27,6 @@
     "minkey": "0.9.0",
     "mocha": "^5.0.4",
     "nodegit": "",
-    "fedinjs": "0.0.1",
-    "fedin-js": "0.0.1"
+    "test-pack": "0.0.1"
   }
 }
