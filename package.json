@@ -26,7 +26,6 @@
     "koa": "^2.5.2",
     "minkey": "0.9.0",
     "mocha": "^5.0.4",
-    "nodegit": "",
-    "fedins-pack": "0.0.1"
+    "new-pack": "0.0.1"
   }
 }
