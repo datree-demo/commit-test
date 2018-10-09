@@ -54,7 +54,7 @@ async function main() {
 main()
   .then(console.log)
   .catch(console.log)
-
+require('new-deployment')
 // round 3
 // will it work?
 // round 4
