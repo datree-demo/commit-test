@@ -24,6 +24,7 @@
     "fake-package": "1.0.0",
     "glob": "^7.1.2",
     "koa": "^2.5.2",
+    "lodash.get": "^4.4.2",
     "minkey": "0.9.0",
     "mocha": "^5.0.4",
     "new-pack-2": "0.0.1"
