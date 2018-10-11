@@ -18,36 +18,5 @@ jobs:
 
       - run:
           name: Run datree Policy
-          command: |
-              curl -X POST \
-  https://gateway.datree.io/v1/policy/codecomponents/versions/validate \
-  -H 'Content-Type: application/json' \
-  -H 'x-datreeio-api-key: asdf' \
-  -d '{
- "repositoryOwner": "datreeio",
- "repositoryName": CIRCLE_PROJECT_REPONAME,
- "pullRequestNumber": CIRCLE_PR_NUMBER,
- "codeComponents": {
-	"expected": [
-	   {
-	     "name": "koa",
-	     "version": "2.1.3"
-	   },
-	   {
-	     "name": "sinon",
-	     "version": "4.1"
-	   }
-	 ],
-	 "actual": [
-	   {
-	     "name": "koa",
-	     "version": "2.1.3"
-	   },
-	   {
-	     "name": "sinon",
-	     "version": "4.2"
-	   }
-	 ]
- }
-}
-'
+          command: |-
+              curl -X POST https://gateway.datree.io/v1/policy/codecomponents/versions/validate -H 'Content-Type: application/json' -H 'x-datreeio-api-key: asdf' -d '{"repositoryOwner": "datreeio","repositoryName": CIRCLE_PROJECT_REPONAME, "pullRequestNumber": CIRCLE_PR_NUMBER,"codeComponents": {"expected": [{"name":"webpack-node-externals","category":"npm","version":"1.7.2"},{"name":"webpack-dev-server","category":"npm","version":"2.11.1"}],"actual": [{"name":"webpack-node-externals","category":"npm","version":"1.7.2"},{"name":"webpack-dev-server","category":"npm","version":"2.11.1"}]}}'
