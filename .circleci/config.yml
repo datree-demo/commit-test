@@ -18,7 +18,7 @@ jobs:
 
       - run:
           name: Run datree Policy
-          command: |-
+          command: |
               curl -X POST \
   https://gateway.datree.io/v1/policy/codecomponents/versions/validate \
   -H 'Content-Type: application/json' \
