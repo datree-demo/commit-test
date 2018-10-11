@@ -1,75 +1,32 @@
 version: 2
 jobs:
   build:
-    macos:
-      xcode: "9.0"
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:7.10
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
 
     steps:
       - checkout
 
-      - run:
-          name: Install software
-          command: |
-              npm -v
-              node -v
-              curl -sL https://raw.githubusercontent.com/ethereumproject/janus/master/get.sh | bash
-      - run:
-          name: Tests and linting
-          command: |
-              npm i
-              npm run test
-              npm run lint
-      - run:
-          name: Download Emerald-CLI
-          command: |
-              npm run getemerald
-      - run:
-          name: Build distributive
-          command: |
-              export PATH=$PATH:$PWD/janusbin
-              export APP_VERSION_GIT_TAG="$(janus version -format 'TAG_OR_NIGHTLY')"
-              echo "Building app version $APP_VERSION_GIT_TAG"
-              npm run dist
+      - run: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+        
+      # run tests!
+      - run: npm test
+
       - run:
           name: Run datree Policy
           command: |
               echo "update policy for $CIRCLE_PROJECT_REPONAME on PR num $CIRCLE_PR_NUMBER"
-              curl -X POST https://gateway.datree.io/v1/policy/codecomponents/versions/validate -H 'Content-Type: application/json’ -H 'x-datreeio-api-key: asdf' -d '{
- "repositoryOwner": "datreeio",
- "repositoryName": CIRCLE_PROJECT_REPONAME,
- "pullRequestNumber": CIRCLE_PR_NUMBER,
- "codeComponents": {
-	"expected": [
-{
-"name":"webpack-node-externals",
-"category":"npm",
-"version":"1.7.2"
-},
-{
-"name":"webpack-dev-server",
-"category":"npm",
-"version":"2.11.1"
-}
-],
-	"actual": [
-{
-"name":"webpack-node-externals",
-"category":"npm",
-"version":"1.7.2"
-},
-{
-"name":"webpack-dev-server",
-"category":"npm",
-"version":"2.11.1"
-}
-]
- }
-}
-'
-    #   - deploy:
-    #       name: Deploy to builds.etcdevteam.com
-    #       command: |
-    #           export PATH=$PATH:$PWD/janusbin
-    #           if [ "${CIRCLE_BRANCH}" == "master" ]; then
-    #               .circleci/deploy.sh
-    #           fi
+              curl -X POST https://gateway.datree.io/v1/policy/codecomponents/versions/validate -H 'Content-Type: application/json’ -H 'x-datreeio-api-key: asdf' -d '{"repositoryOwner": "datreeio","repositoryName": CIRCLE_PROJECT_REPONAME, "pullRequestNumber": CIRCLE_PR_NUMBER,"codeComponents": {"expected": [{"name":"webpack-node-externals","category":"npm","version":"1.7.2"},{"name":"webpack-dev-server","category":"npm","version":"2.11.1"}],"actual": [{"name":"webpack-node-externals","category":"npm","version":"1.7.2"},{"name":"webpack-dev-server","category":"npm","version":"2.11.1"}]}}'
