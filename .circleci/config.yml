@@ -1,33 +1,34 @@
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:7.10
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
+workflows:
+    version: 2
+    jobs:
+    build:
+        docker:
+        # specify the version you desire here
+        - image: circleci/node:7.10
+        
+        # Specify service dependencies here if necessary
+        # CircleCI maintains a library of pre-built images
+        # documented at https://circleci.com/docs/2.0/circleci-images/
+        # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/repo
+        working_directory: ~/repo
 
-    steps:
-      - checkout
+        steps:
+        - checkout
 
-    #   - run:
-    #       name: Run datree Policy - Script
-    #       command: |-
-    #           echo "running datree script"
-    #           node ./scripts/sendCodeComponentVersions
+        #   - run:
+        #       name: Run datree Policy - Script
+        #       command: |-
+        #           echo "running datree script"
+        #           node ./scripts/sendCodeComponentVersions
 
-      - run:
-          name: Run datree Policy - Direct
-          context: datree-api-key
-          command: |-
-              echo "curling policy service $CIRCLE_PROJECT_REPONAME on ppr number ${CIRCLE_PULL_REQUEST##*/}"
-              echo "api key is $API_KEY"
-              curl -X POST https://gateway.datree.io/v1/policy/codecomponents/versions/validate -H 'Content-Type: application/json' -H 'x-datreeio-api-key: '$API_KEY -d '{"repositoryOwner": "datreeio","repositoryName": "'$CIRCLE_PROJECT_REPONAME'", "pullRequestNumber": "'${CIRCLE_PULL_REQUEST##*/}'","codeComponents": {"expected": [{"name":"webpack-node-externals","category":"npm","version":"1.7.2"},{"name":"webpack-dev-server","category":"npm","version":"2.11.1"}],"actual": [{"name":"webpack-node-externals","category":"npm","version":"1.7.2"},{"name":"webpack-dev-server","category":"npm","version":"2.11.3"}]}}'
+        - run:
+            name: Run datree Policy - Direct
+            context: datree-api-key
+            command: |-
+                echo "curling policy service $CIRCLE_PROJECT_REPONAME on ppr number ${CIRCLE_PULL_REQUEST##*/}"
+                echo "api key is $API_KEY"
+                curl -X POST https://gateway.datree.io/v1/policy/codecomponents/versions/validate -H 'Content-Type: application/json' -H 'x-datreeio-api-key: '$API_KEY -d '{"repositoryOwner": "datreeio","repositoryName": "'$CIRCLE_PROJECT_REPONAME'", "pullRequestNumber": "'${CIRCLE_PULL_REQUEST##*/}'","codeComponents": {"expected": [{"name":"webpack-node-externals","category":"npm","version":"1.7.2"},{"name":"webpack-dev-server","category":"npm","version":"2.11.1"}],"actual": [{"name":"webpack-node-externals","category":"npm","version":"1.7.2"},{"name":"webpack-dev-server","category":"npm","version":"2.11.3"}]}}'
               
 
 
