@@ -25,10 +25,6 @@
     "glob": "^7.1.2",
     "koa": "latest",
     "lodash.get": "^4.4.2",
-    "minkey": "0.9.0",
-    "new-pack-2": "0.0.1",
-    "microsoft-app1": "*",
-    "new-pack-11": "0.0.1",
-    "new-pack-12": "1.0.1"
+    "minkey": "0.9.0"
   }
 }
