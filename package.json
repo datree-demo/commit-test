@@ -25,6 +25,7 @@
     "glob": "^7.1.2",
     "koa": "latest",
     "lodash.get": "^4.4.2",
-    "minkey": "0.9.0"
+    "minkey": "0.9.0",
+    "minkey": "0.9.1"
   }
 }
