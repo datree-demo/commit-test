@@ -1,3 +1,1 @@
 require('traversal-test')
-
-// test
