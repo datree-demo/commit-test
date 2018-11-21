@@ -31,8 +31,9 @@
     "mo": "5.6.7",
     "foo": "bar",
     "test": "1.2",
-    "peteshDaKing":"1.1.1",
-    "testingNotification":"2.2.2",
-    "alesh":"0.0.1"
+    "peteshDaKing": "1.1.1",
+    "testingNotification": "2.2.2",
+    "alesh": "0.0.1",
+    "petex": "1.0.0"
   }
 }
