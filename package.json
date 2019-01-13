@@ -22,8 +22,7 @@
     "coveralls": "^6.0.1",
     "escape-goat": "^1.3.0",
     "fake-package": "1.0.0",
-    "glob": "^7.1.2",
-    "koa": "^2.0.1",
+    "koa": "^3.0.1",
     "lodash.get": "^4.4.2",
     "minkey": "0.9.0",
     "minkey-2": "0.9.1",
@@ -36,6 +35,7 @@
     "alesh": "0.0.1",
     "petex": "1.0.0",
     "agg":"1.1.1",
-    "yoyoyo": "1.1.2"
+    "yoyoyo": "1.1.2",
+    "shimon-13-1-2": "*"
   }
 }
