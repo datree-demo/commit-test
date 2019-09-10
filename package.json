@@ -36,6 +36,7 @@
     "alesh": "0.0.1",
     "petex": "1.0.0",
     "agg":"1.1.1",
-    "yoyoyo": "1.1.2"
+    "yoyoyo": "1.1.2",
+    "TomerKaltura": "*"
   }
 }
