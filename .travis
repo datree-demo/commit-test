@@ -1,0 +1,14 @@
+language: node_js
+node_js: '10'
+sudo: required
+dist: trusty
+services: docker
+before_install:
+- npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+- "[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm"
+- npm install -g
+- pyenv local 3.6
+- pip install --user awscli
+install:
+- npm ci
+- npm test
