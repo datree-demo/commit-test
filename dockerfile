@@ -1,13 +1,9 @@
-FROM python:2.7.10
-
-WORKDIR /enforcer
-
-COPY requirements.txt /enforcer
-RUN pip install -r requirements.txt
-
-COPY . /enforcer
-
-ADD ./build_tools/rook-config.json /etc/rookout/rook-config.json
-RUN mkdir -p /var/log/rookout
-
-CMD ["python", "main.py"]
+FROM node:10
+WORKDIR /usr/src/app
+COPY package.json .
+ARG NPM_TOKEN
+RUN npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+RUN npm install
+COPY . .
+EXPOSE 8000
+CMD [ "npm", "start" ]
