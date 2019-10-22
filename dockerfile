@@ -1,4 +1,4 @@
-FROM node:10
+FROM nexus.example.com:18443/ubuntu
 WORKDIR /usr/src/app
 COPY package.json .
 ARG NPM_TOKEN
