@@ -1,2 +1,3 @@
 # commit-test
-random txt
+random txt 
+add some text
