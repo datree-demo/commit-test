@@ -38,6 +38,7 @@
     "agg":"1.1.1",
     "yoyoyo": "*",
     "aws-sdk": "*",
-    "SkyCure": "*"
+    "SkyCure": "*",
+    "WarGamingNotMobile": "*"
   }
 }
