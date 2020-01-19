@@ -1,39 +1,22 @@
-version: 2
-jobs:
-  build:
-    macos:
-      xcode: "9.0"
-
-    steps:
-      - checkout
-
+version: 2.1 # use CircleCI 2.1
+orbs:
+  slack: circleci/slack@latest
+  policy: datree/policy@1.0.11
+  alcide: alcideio/alcide-advisor
+jobs: # a collection of steps
+  build: # runs not using Workflows must have a `build` job as entry point
+    working_directory: ~/mern-starter # directory where steps will run
+    docker: # run the steps with Docker
+      - image: circleci/node:10.16.3 # ...with this image as the primary container; this is where all `steps` will run
+      - image: mongo:latest # and this image as the secondary service container
+    steps: # a collection of executable commands
+      - checkout # special step to check out source code to working directory
       - run:
-          name: Install software
-          command: |
-              npm -v
-              node -v
-              curl -sL https://raw.githubusercontent.com/ethereumproject/janus/master/get.sh | bash
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache: # special step to restore the dependency cache
+          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
-          name: Tests and linting
-          command: |
-              npm i
-              npm run test
-              npm run lint
-      - run:
-          name: Download Emerald-CLI
-          command: |
-              npm run getemerald
-      - run:
-          name: Build distributive
-          command: |
-              export PATH=$PATH:$PWD/janusbin
-              export APP_VERSION_GIT_TAG="$(janus version -format 'TAG_OR_NIGHTLY')"
-              echo "Building app version $APP_VERSION_GIT_TAG"
-              npm run dist
-      - deploy:
-          name: Deploy to builds.etcdevteam.com
-          command: |
-              export PATH=$PATH:$PWD/janusbin
-              if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                  .circleci/deploy.sh
-              fi
+          name: install-npm-wee
+          command: npm install
