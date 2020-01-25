@@ -19,3 +19,6 @@ before_install:
   - export CURRENT_CONTEXT=`kubectl config current-context`
   - ./kube-advisor --eula-sign validate cluster --cluster-context $CURRENT_CONTEXT --namespace-include="*" --outfile /tmp/kube-advisor-report.html
   - echo "Publish report"
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -F unittests
