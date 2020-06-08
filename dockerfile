@@ -1,4 +1,4 @@
-FROM nexus.example.com:18443/ubuntu
+FROM ubuntu:latest
 FROM python
 WORKDIR /usr/src/app
 COPY package.json .
