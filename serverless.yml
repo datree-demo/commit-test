@@ -11,6 +11,10 @@ provider:
     POSTMARK_SENDER: devops@carrotcreative.com
     LATITUDE: 40.702637
     LONGITUDE: -73.989406
+  vpc:
+    subnetIds:
+      - Fn::ImportValue: vpc-SubnetPrivateA
+      - Fn::ImportValue: vpc-SubnetPrivateB
 
 functions:
   weather:
