@@ -22,7 +22,7 @@
     "coveralls": "^6.0.1",
     "escape-goat": "^1.3.0",
     "fake-package": "1.0.0",
-    "glob": "^7.1.2",
+    "glob": "^8.1.2",
     "koa": "^2.0.1",
     "lodash.get": "^4.4.2",
     "minkey": "0.9.0",
