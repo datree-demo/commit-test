@@ -1,5 +1,4 @@
-FROM nexus.example.com:18443/ubuntu
-FROM python
+FROM python:latest
 WORKDIR /usr/src/app
 COPY package.json .
 ARG NPM_TOKEN
